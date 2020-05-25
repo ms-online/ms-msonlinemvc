@@ -1,1 +1,1 @@
-lesson3-4:通过 index.php 定向到所有内容
+lesson3-5:boostrap 文件引入& Core Class 类创建并得到 URL

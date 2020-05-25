@@ -1,1 +1,1 @@
-lesson4-1:创建基础 controller，加载 models 和 views
+lesson4-2:创建并加载 views 视图

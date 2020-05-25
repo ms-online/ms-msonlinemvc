@@ -1,1 +1,1 @@
-lesson3-5:boostrap 文件引入& Core Class 类创建并得到 URL
+lesson3-6:根据 URL 加载 controller

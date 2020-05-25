@@ -1,1 +1,1 @@
-项目介绍：PHP 面向对象 MVC 框架制作
+lesson3-4:通过 index.php 定向到所有内容

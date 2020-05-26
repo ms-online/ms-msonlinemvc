@@ -1,1 +1,1 @@
-lesson4-2:创建并加载 views 视图
+lesson4-3:配置文件 & 自动加载

@@ -12,3 +12,5 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost/shareposts');
 // site name
 define('SITENAME', '共享贴吧');
+// APP Version
+define("APPVERSION", '1.0.0');

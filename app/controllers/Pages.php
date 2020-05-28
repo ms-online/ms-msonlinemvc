@@ -8,7 +8,7 @@ class Pages extends Controller
     public function index()
     {
 
-        $data = ['title' => 'MsonlineMVC'];
+        $data = ['title' => '共享贴吧'];
         $this->view('pages/index', $data);
     }
 

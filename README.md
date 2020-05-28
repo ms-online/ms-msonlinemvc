@@ -1,1 +1,2 @@
-lesson5-1:初始化 APP&创建数据库
+项目介绍：共享贴吧
+框架：msonlineMVC

@@ -9,7 +9,51 @@ class Users extends Controller
     {
         // 验证是post请求还是加载页面
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // 提交表单
+            // 提交表单,进行表单验证
+            // 预处理POST表单数据
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // 创建初始化data
+            $data = [
+                'name' => trim($_POST['name']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
+                'confirm_password' => trim($_POST['confirm_password']),
+                'name_err' => '',
+                'email_err' => '',
+                'password_err' => '',
+                'confirm_password_err' => ''
+            ];
+            // 验证姓名是否为空
+            if (empty($data['name'])) {
+                $data['name_err'] = "姓名不能为空！";
+            }
+
+            // 验证邮箱是否为空
+            if (empty($data['email'])) {
+                $data['email_err'] = "邮箱不能为空！";
+            }
+
+            // 验证密码是否为空/密码长度不小于6
+            if (empty($data['password'])) {
+                $data['password_err'] = "密码不能为空！";
+            } else if (strlen($data['password']) < 6) {
+                $data['password_err'] = "密码至少6位数！";
+            }
+
+            // 验证确认密码是否为空/是否和密码匹配
+            if (empty($data['confirm_password'])) {
+                $data['confirm_password_err'] = "确认密码不能为空！";
+            } else if ($data['password'] != $data['confirm_password']) {
+                $data['confirm_password_err'] = "密码不匹配";
+            }
+
+            // 确保所有err都为空
+            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                // 验证通过
+                die('注册验证成功');
+            } else {
+                $this->view('users/register', $data);
+            }
         } else {
             // 创建初始化data
             $data = [
@@ -32,7 +76,35 @@ class Users extends Controller
     {
         // 验证是post请求还是加载页面
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // 提交表单
+            // 提交表单,进行验证
+            // 预处理POST表单数据
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // 创建初始化data
+            $data = [
+
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
+                'email_err' => '',
+                'password_err' => '',
+
+            ];
+            // 验证邮箱是否为空
+            if (empty($data['email'])) {
+                $data['email_err'] = "邮箱不能为空！";
+            }
+            // 验证密码是否为空/密码长度不小于6
+            if (empty($data['password'])) {
+                $data['password_err'] = "密码不能为空！";
+            } else if (strlen($data['password']) < 6) {
+                $data['password_err'] = "密码至少6位数！";
+            }
+            // 确保所有err都为空
+            if (empty($data['email_err']) && empty($data['password_err'])) {
+                // 验证通过
+                die('登录验证成功');
+            } else {
+                $this->view('users/login', $data);
+            }
         } else {
             // 创建初始化data
             $data = [

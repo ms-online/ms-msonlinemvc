@@ -1,6 +1,8 @@
 <?php
 // 加载config
 require_once 'config/config.php';
+// 加载helpers
+require_once 'helpers/url_helper.php';
 
 // 加载libraries
 // require_once 'libraries/Controller.php';

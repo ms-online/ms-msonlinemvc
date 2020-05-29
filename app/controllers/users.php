@@ -56,7 +56,17 @@ class Users extends Controller
             // 确保所有err都为空
             if (empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
                 // 验证通过
-                die('注册验证成功');
+                // die('注册验证成功');
+
+                // 密码加密
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                // 注册用户
+                if ($this->userModel->register($data)) {
+                    redirect('users/login');
+                } else {
+                    die('抱歉，有错误');
+                }
             } else {
                 $this->view('users/register', $data);
             }

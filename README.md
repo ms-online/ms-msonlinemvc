@@ -1,1 +1,1 @@
-lesson5-7:注册用户
+lesson5-8:创建闪现信息 flash message

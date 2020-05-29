@@ -63,6 +63,7 @@ class Users extends Controller
 
                 // 注册用户
                 if ($this->userModel->register($data)) {
+                    flash('register-success', '恭喜注册成功，可以直接进行登录！');
                     redirect('users/login');
                 } else {
                     die('抱歉，有错误');

@@ -3,6 +3,7 @@ class Users extends Controller
 {
     public function __construct()
     {
+        $this->userModel = $this->model('User');
     }
 
     public function register()
@@ -31,6 +32,11 @@ class Users extends Controller
             // 验证邮箱是否为空
             if (empty($data['email'])) {
                 $data['email_err'] = "邮箱不能为空！";
+            } else {
+                // 验证邮箱是否被注册
+                if ($this->userModel->findUserByEmail($data['email'])) {
+                    $data['email_err'] = "邮箱已被注册！";
+                }
             }
 
             // 验证密码是否为空/密码长度不小于6

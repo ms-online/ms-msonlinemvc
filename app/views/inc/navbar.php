@@ -14,12 +14,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URLROOT; ?>/pages/about">关于我们</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                <li class="nav-item ">
+                    <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">退出 </a>
+                </li>
+                <?php else : ?>
                 <li class="nav-item ">
                     <a class="nav-link" href="<?php echo URLROOT; ?>/users/register">注册 </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">登录</a>
                 </li>
+                <?php endif; ?>
 
             </ul>
         </div>

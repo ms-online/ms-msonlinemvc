@@ -128,8 +128,8 @@ class Users extends Controller
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
                 if ($loggedInUser) {
-                    // 创建flash message
-                    die('登录成功！');
+                    // 创建session
+                    $this->createUserSession($loggedInUser);
                 } else {
                     $data['password_err'] = '密码错误';
 
@@ -149,6 +149,32 @@ class Users extends Controller
 
             // 加载登录页面
             $this->view('users/login', $data);
+        }
+    }
+
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_name'] = $user->name;
+        redirect('pages/index');
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_password']);
+        session_destroy();
+        redirect('users/login');
+    }
+
+    public function isLoggdeIn()
+    {
+        if (isset($_SESSION['user_id'])) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

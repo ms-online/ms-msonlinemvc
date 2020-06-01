@@ -112,13 +112,29 @@ class Users extends Controller
             // 验证密码是否为空/密码长度不小于6
             if (empty($data['password'])) {
                 $data['password_err'] = "密码不能为空！";
-            } else if (strlen($data['password']) < 6) {
-                $data['password_err'] = "密码至少6位数！";
             }
+            // 验证是否存在这个用户（email）
+            if ($this->userModel->findUserByEmail($data['email'])) {
+                // 用户存在
+            } else {
+                // 用户不存在
+                $data['email_err'] = '抱歉，该邮箱未注册！';
+            }
+
             // 确保所有err都为空
             if (empty($data['email_err']) && empty($data['password_err'])) {
                 // 验证通过
-                die('登录验证成功');
+                // 验证用户登录
+                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                if ($loggedInUser) {
+                    // 创建flash message
+                    die('登录成功！');
+                } else {
+                    $data['password_err'] = '密码错误';
+
+                    $this->view('users/login', $data);
+                }
             } else {
                 $this->view('users/login', $data);
             }

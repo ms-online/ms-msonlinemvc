@@ -25,6 +25,24 @@ class User
         }
     }
 
+    // 用户登录
+    public function login($email, $password)
+    {
+        $this->db->query('SELECT * FROM users WHERE email =:email');
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+
+        $hashed_password = $row->password;
+        // 判断密码是否匹配
+        if (password_verify($password, $hashed_password)) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
+
     // 通过邮箱查询是否有这个用户
     public function findUserByEmail($email)
     {

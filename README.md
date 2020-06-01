@@ -1,1 +1,1 @@
-lesson6-2:Posts 主页路由守卫
+lesson6-3:创建 post 模型文件&显示数据

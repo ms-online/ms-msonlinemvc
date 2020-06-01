@@ -6,11 +6,16 @@ class Posts extends Controller
         if (!isLoggdeIn()) {
             redirect('users/login');
         }
+        $this->postModel = $this->model('Post');
     }
     public function index()
     {
+        // 获取posts
+        $posts = $this->postModel->getPosts();
         // 初始化
-        $data = [];
+        $data = [
+            'posts' => $posts
+        ];
         $this->view('posts/index', $data);
     }
 }

@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card card-body bg-light mt-5">
-            <?php flash('register-success'); ?>
+            <?php echo flash('register-success'); ?>
             <h2>登录</h2>
             <p>请填写表单内容进行登录</p>
             <form action="<?php echo URLROOT; ?>/users/login" method="POST">

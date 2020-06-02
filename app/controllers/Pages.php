@@ -7,6 +7,9 @@ class Pages extends Controller
 
     public function index()
     {
+        if (isLoggdeIn()) {
+            redirect('posts');
+        }
 
         $data = ['title' => '共享贴吧', 'description' => '基于PHP面向对象MVC框架创建的一个简单的社交网络平台'];
         $this->view('pages/index', $data);

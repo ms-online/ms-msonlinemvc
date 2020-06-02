@@ -18,4 +18,13 @@ class Posts extends Controller
         ];
         $this->view('posts/index', $data);
     }
+    public function add()
+    {
+        // 初始化
+        $data = [
+            'title' => '',
+            'body' => ''
+        ];
+        $this->view('posts/add', $data);
+    }
 }

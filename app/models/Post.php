@@ -26,4 +26,20 @@ class Post
 
         return $results;
     }
+    // 添加博客
+    public function addPost($data)
+    {
+        $this->db->query('INSERT INTO posts(title, user_id, body) VALUES(:title, :user_id, :body)');
+        // 将值绑定到参数
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':body', $data['body']);
+
+        // 执行预处理语句
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

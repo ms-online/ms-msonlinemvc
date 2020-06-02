@@ -42,4 +42,15 @@ class Post
             return false;
         }
     }
+
+    // 通过id获取
+    public function getPostById($id)
+    {
+        $this->db->query('SELECT * FROM posts WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
 }

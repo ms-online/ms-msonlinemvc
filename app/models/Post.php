@@ -70,4 +70,19 @@ class Post
             return false;
         }
     }
+
+    // 删除博客
+    public function deletePost($id)
+    {
+        $this->db->query('DELETE FROM posts WHERE id = :id');
+        // 将值绑定到参数
+        $this->db->bind(':id', $id);
+
+        // 执行预处理语句
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

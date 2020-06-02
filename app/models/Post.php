@@ -53,4 +53,21 @@ class Post
 
         return $row;
     }
+
+    // 更新博客
+    public function updatePost($data)
+    {
+        $this->db->query('UPDATE posts SET title= :title,body=:body WHERE id =:id');
+        // 将值绑定到参数
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':body', $data['body']);
+
+        // 执行预处理语句
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
